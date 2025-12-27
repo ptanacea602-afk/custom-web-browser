@@ -1,0 +1,27 @@
+{
+  "name": "adhd-browser",
+  "version": "0.1.0",
+  "description": "Minimal customizable browser for ADHD-friendly workflows",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --mac",
+    "pack": "electron-builder --mac --dir"
+  },
+  "devDependencies": {
+    "electron": "^26.0.0",
+    "electron-builder": "^24.0.0"
+  },
+  "build": {
+    "appId": "com.example.adhd-browser",
+    "productName": "ADHD Browser",
+    "files": [
+      "**/*"
+    ],
+    "mac": {
+      "icon": "build/icon.icns",
+      "target": ["dmg", "zip"],
+      "category": "public.app-category.productivity"
+    }
+  }
+}

@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: data: 'unsafe-inline' 'unsafe-eval'"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ADHD Browser</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <div class="topbar">
+      <div class="nav-left">
+        <button id="back">◀</button>
+        <button id="forward">▶</button>
+        <button id="reload">⟳</button>
+      </div>
+      <input id="address" placeholder="Enter a URL or search term" />
+      <div class="nav-right">
+        <button id="bookmark-page">☆</button>
+        <button id="toggle-bookmarks">Bookmarks</button>
+        <button id="open-settings">Settings</button>
+      </div>
+    </div>
+
+    <div class="container">
+      <aside id="bookmarks-pane" class="bookmarks-pane hidden">
+        <div class="bookmarks-header">
+          <h3>Bookmarks</h3>
+          <div class="bm-controls">
+            <input id="new-bm-title" placeholder="Title" />
+            <input id="new-bm-url" placeholder="https://example.com" />
+            <button id="add-bookmark">Add</button>
+            <button id="clear-bookmarks">Clear</button>
+            <button id="export-bookmarks">Export</button>
+            <button id="import-bookmarks-btn">Import</button>
+            <input id="import-bookmarks" type="file" accept="application/json" style="display:none" />
+          </div>
+        </div>
+        <div id="bookmarks" class="bookmarks"></div>
+      </aside>
+
+      <main id="main-area">
+        <webview id="webview" src="https://www.example.com" style="width:100%; height:100%;" partition="persist:webview"></webview>
+      </main>
+    </div>
+
+    <div id="settings" class="modal hidden">
+      <div class="modal-content">
+        <h3>Settings</h3>
+        <label>Theme color: <input type="color" id="theme-color" /></label>
+        <label>Background color: <input type="color" id="bg-color" /></label>
+        <label>Font: 
+          <select id="font-select">
+            <option value="Inter, system-ui, sans-serif">Inter (default)</option>
+            <option value="Georgia, serif">Georgia</option>
+            <option value="'Comic Sans MS', cursive">Comic Sans</option>
+            <option value="'Courier New', monospace">Mono</option>
+          </select>
+        </label>
+        <label>Layout: 
+          <select id="layout-select">
+            <option value="left">Bookmarks Left</option>
+            <option value="top">Bookmarks Top</option>
+          </select>
+        </label>
+        <div class="modal-actions">
+          <button id="save-settings">Save</button>
+          <button id="close-settings">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
